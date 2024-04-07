@@ -1,0 +1,60 @@
+* npm init -y
+
+* npx eslint --init (iniciar configurações eslint)
+
+* npm nodemon sucrase --save-dev
+
+* dentro de nodemon.json:
+    {
+      "execMap": {
+      "js": "node -r sucrase/register"
+      }
+    }
+* em packtage.json:
+    "dev": "nodemon server.js"
+
+* npm i express
+
+* npm i dotenv
+
+* npm i sequelize mariadb (para poder rodar migrations)
+
+* npm i -D sequelize-cli (aparentemente para poder digitar comandos)
+  * como criar uma: npx sequelize migration:create --name=alunos
+  * executando migração: npx sequelize db:migrate
+  * criando seeds: npx sequelize seed:generate --name criar-usuarios
+  * executando seeds: npx sequelize db:seed:all
+
+* temos um arquivo de configuração com variaveis ambiente (.env), que
+  tem suas variaveis passadas para o arquivo de configuração .sequelizerc,
+
+* Para desfazer migração, usa npx sequelize db:migrate:undo
+
+* no arquivo de database.js temos as configs do banco que também buscam
+  variáveis .env
+
+TENTANDO ENTENDER FLUXO DE PROCESSO NO banco
+
+* Controller: utiliza model para enviar os dados;
+* Model: tem o modelo de dados para cada tabela (ex: Aluno), além de receber uma conexão
+  para poder se conectar ao banco (sequelize)
+* database/index.js = é o arquivo que roda as conexões para cada model passando a connection para elas
+* homeRoutes é o que para cada rota chama o método da Controller
+* o app.js chama as rotas da homeRoutes por meio da função routes()
+* o server.js bota o app.js para escutar numa porta especifica e ser chamado
+* database.js e sequelizerc = arquivos de config do banco e do sequelize, respectivamente
+* migrations criam ou destroem tabelas (ao que vi até agora)
+
+NOVOS comandos
+
+* npm i bcryptjs: ferramenta para gerar hash a partir de senhas digitadas
+* npm i jsonwebtoken: instala json web token (JWT)
+
+IP DA VM NO SERVIÇO:
+
+* 192.168.100.179
+
+INSTALAÇÃO MULTER - UPLOAD DE arquivos
+
+* npm i multer
+
