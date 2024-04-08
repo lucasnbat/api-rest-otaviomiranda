@@ -1,4 +1,5 @@
 // importando o dotenv
+import { resolve } from 'path';
 import dotenv from 'dotenv';
 import express from 'express';
 import homeRoutes from './src/routes/homeRoutes';
@@ -22,6 +23,7 @@ class App {
     this.app.use(express.urlencoded({ extended: true }));
     // config. para aceitar requisições em formato JSON
     this.app.use(express.json());
+    this.app.use(express.static(resolve(__dirname, 'uploads')));
   }
 
   routes() {

@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import appConfig from '../config/appConfig';
 
 // a Model parece ter a função que conecta cada tipo de tabela ao banco de dados
 // recebendo a conexão e contendo as variaveis para de cada tipo de dado
@@ -27,6 +28,12 @@ export default class Foto extends Model {
           notEmpty: {
             msg: 'Campo não pode ficar vazio',
           },
+        },
+      },
+      url: {
+        type: Sequelize.VIRTUAL,
+        get() {
+          return `${appConfig.url}/images/${this.getDataValue('filename')}`;
         },
       },
     }, {
